@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Wilmer Felipe Pungo - Desarrollador Full Stack especializado en Python, Data Science y e-commerce. 3 años de experiencia en soluciones insurtech y desarrollo web.">
+    <title>Wilmer Pungo | Full Stack Developer & Data Science Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">WP</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Inicio</a></li>
+                <li><a href="#about" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#experience" class="nav-link">Experiencia</a></li>
+                <li><a href="#projects" class="nav-link">Proyectos</a></li>
+                <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting">Hola, soy</p>
+                <h1 class="hero-name">Wilmer Felipe Pungo</h1>
+                <h2 class="hero-title">
+                    <span class="typing-text">Desarrollador Full Stack</span>
+                </h2>
+                <p class="hero-description">
+                    Especialista en Python con enfoque en Data Science y Machine Learning.
+                    Creando soluciones innovadoras para e-commerce e insurtech.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Contáctame</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">Ver Proyectos</a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://github.com/pungow" target="_blank" class="social-link" aria-label="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/wilmerpungo-developer" target="_blank" class="social-link"
+                        aria-label="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:pungowilmer@gmail.com" class="social-link" aria-label="Email">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <div class="image-placeholder">
+                        <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+                            <circle cx="100" cy="100" r="80" fill="url(#gradient1)" />
+                            <defs>
+                                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4ecdc4;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Conóceme</span>
+                <h2 class="section-title">Sobre Mí</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-intro">
+                        Desarrollador Full Stack con <strong>3 años de experiencia profesional</strong>,
+                        especializado en e-commerce y soluciones insurtech. Sólida experiencia en desarrollo
+                        frontend y backend con GeneXus, Magento y tecnologías web modernas.
+                    </p>
+                    <p>
+                        Me apasiona <strong>Python y el análisis de datos</strong> - lo que comenzó como proyectos
+                        personales desde 2022 ahora lo estoy profesionalizando hacia Data Science y Machine Learning.
+                        Enfocado en crear soluciones escalables, automatización de procesos y experiencias de usuario
+                        optimizadas para sectores de comercio electrónico y seguros.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Años de Experiencia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Proyectos Completados</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Tecnologías</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-info">
+                    <div class="info-card">
+                        <div class="info-icon">🎓</div>
+                        <h3>Educación</h3>
+                        <p><strong>Ingeniería en Electrónica</strong></p>
+                        <p class="info-detail">Corporación Universitaria Autónoma del Cauca</p>
+                        <p class="info-detail">2018 - 2023</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <h3>Ubicación</h3>
+                        <p><strong>Cali, Colombia</strong></p>
+                        <p class="info-detail">Disponible para trabajo remoto</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🌐</div>
+                        <h3>Idiomas</h3>
+                        <p><strong>Español</strong> - Nativo</p>
+                        <p><strong>Inglés</strong> - Intermedio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Mi Trayectoria</span>
+                <h2 class="section-title">Experiencia Profesional</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge current">Actual</div>
+                        <h3 class="timeline-title">Jr Software Development</h3>
+                        <h4 class="timeline-company">Zuru Logistics Insurtech</h4>
+                        <p class="timeline-period">Octubre 2023 - Actualidad (2 años) • Remoto, Perú</p>
+                        <ul class="timeline-description">
+                            <li>Desarrollo de plataforma digital para el sector logístico-asegurador, conectando
+                                sistemas tradicionales con servicios de IA modernos</li>
+                            <li>Creación de APIs REST con GeneXus para integración con múltiples plataformas externas
+                            </li>
+                            <li>Implementación de sistema automatizado que sincroniza documentos de seguros - procesa
+                                certificados de mercancías de importación y exportación usando web scraping y bases de
+                                datos</li>
+                            <li>Automatización de procesos críticos con Python, mejorando significativamente la
+                                eficiencia operativa</li>
+                            <li>Integración exitosa de plataformas de facturación y conexión estable con grandes
+                                aseguradoras mediante APIs especializadas</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">GeneXus</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">APIs REST</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">pandas</span>
+                            <span class="tech-tag">playwright</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Frontend Developer (Desarrollador Magento)</h3>
+                        <h4 class="timeline-company">Omni.Pro</h4>
+                        <p class="timeline-period">Noviembre 2021 - Mayo 2023 (1 año 7 meses) • Remoto, Panamá</p>
+                        <ul class="timeline-description">
+                            <li>Mantenimiento y optimización de tiendas e-commerce con Magento (Adobe Commerce)</li>
+                            <li>Desarrollo de sitios web responsive centrados en experiencia del usuario</li>
+                            <li>Integración de extensiones y módulos para sistemas CRM, ERP y pasarelas de pago</li>
+                            <li>Metodología SCRUM en proyectos grandes con herramientas Jira, dailies y sprints</li>
+                            <li>Procesamiento y limpieza de datos con Python/pandas para cargas masivas de productos
+                            </li>
+                            <li><strong>Optimización:</strong> 50% mejora en tiempos de carga y 30% incremento en
+                                conversiones</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Magento</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">Tailwind</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-highlight">
+                            <strong>Proyectos destacados:</strong> Tiendas TIA (Ecuador), TERPEL (Colombia/Perú), Alpina
+                            (Colombia), GlobalBank (Panamá)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Mi Trabajo</span>
+                <h2 class="section-title">Proyectos Python & Data Science</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <div class="project-category">AUTOMATIZACIÓN</div>
+                    <h3 class="project-title">Robot de Automatización para Seguros</h3>
+                    <p class="project-description">
+                        Sistema que consulta nuestra base de datos, navega automáticamente por plataformas aseguradoras,
+                        descarga documentos y los sube a nuestro sistema. Corre cada 10 minutos y ha eliminado horas de
+                        trabajo manual diario.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">pandas</span>
+                        <span class="tech-badge">requests</span>
+                        <span class="tech-badge">playwright</span>
+                        <span class="tech-badge">SQLAlchemy</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">⚡</div>
+                    <div class="project-category">MACHINE LEARNING</div>
+                    <h3 class="project-title">Predicción de Consumo Eléctrico</h3>
+                    <p class="project-description">
+                        Modelo que predice el consumo energético residencial basándose en datos históricos y variables
+                        climáticas. El proyecto me ayudó a entender mejor cómo los algoritmos de ML pueden resolver
+                        problemas reales de eficiencia.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">scikit-learn</span>
+                        <span class="tech-badge">matplotlib</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">☕</div>
+                    <div class="project-category">DATA ANALYSIS</div>
+                    <h3 class="project-title">Análisis de Cultivo de Café</h3>
+                    <p class="project-description">
+                        Proyecto para analizar la eficiencia en ciclos de café en invernadero. Procesé datos de
+                        temperatura,
+                        humedad, calidad del grano y altitud para identificar patrones que optimicen la producción.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">matplotlib</span>
+                        <span class="tech-badge">pandas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Mis Capacidades</span>
+                <h2 class="section-title">Habilidades Técnicas</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon">🐍</div>
+                        <h3>Python & Data Science</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>pandas / numpy</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>TensorFlow / scikit-learn</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>matplotlib</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>APIs REST con Flask</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon">💻</div>
+                        <h3>Frontend & Backend</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>HTML5 / CSS3</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Tailwind CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>PHP</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>GeneXus</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>MySQL / APIs REST</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 87%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon">🛒</div>
+                        <h3>E-Commerce</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Magento (Adobe Commerce)</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>WordPress</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Optimización & SEO</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon">🔧</div>
+                        <h3>Herramientas & Integración</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Git / GitHub</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Google Cloud Platform</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>SCRUM / Agile</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Hablemos</span>
+                <h2 class="section-title">Contacto</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>¿Tienes un proyecto en mente?</h3>
+                    <p>Estoy disponible para trabajar en proyectos freelance, colaboraciones o posiciones full-time.
+                        ¡No dudes en contactarme!</p>
+                    <div class="contact-methods">
+                        <a href="mailto:pungowilmer@gmail.com" class="contact-method">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <span class="method-label">Email</span>
+                                <span class="method-value">pungowilmer@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="tel:+573234403666" class="contact-method">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <span class="method-label">Teléfono</span>
+                                <span class="method-value">+57 323 440 3666</span>
+                            </div>
+                        </a>
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <span class="method-label">Ubicación</span>
+                                <span class="method-value">Cali, Colombia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://github.com/pungow" target="_blank" class="social-btn" aria-label="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/wilmerpungo-developer" target="_blank" class="social-btn"
+                            aria-label="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Enviar Mensaje</span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M18 2L9 11M18 2l-7 16-2-7-7-2 16-7z" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Wilmer Felipe Pungo. Todos los derechos reservados.</p>
+                <p class="footer-tagline">Desarrollado con ❤️ y mucho ☕</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
