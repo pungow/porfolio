@@ -224,12 +224,15 @@ body {
 .typing-text {
     position: relative;
     display: inline-block;
+    min-height: 1em;
+    min-width: 2px;
 }
 
 .typing-text::after {
     content: '|';
     position: absolute;
     right: -10px;
+    top: 0;
     animation: blink 1s infinite;
 }
 

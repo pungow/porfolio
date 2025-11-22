@@ -177,13 +177,14 @@ if (contactForm) {
     });
 }
 
-// Particle System for Hero Background
+// Particle System for Hero Background with Wave Effects
 class ParticleSystem {
     constructor() {
         this.canvas = null;
         this.ctx = null;
         this.particles = [];
-        this.mouse = { x: null, y: null, radius: 150 };
+        this.mouse = { x: null, y: null, radius: 200 };
+        this.waves = []; // Store active waves
         this.init();
     }
 
@@ -223,13 +224,13 @@ class ParticleSystem {
     }
 
     createParticles() {
-        const numberOfParticles = Math.floor((this.canvas.width * this.canvas.height) / 9000);
+        const numberOfParticles = Math.floor((this.canvas.width * this.canvas.height) / 6000);
         for (let i = 0; i < numberOfParticles; i++) {
-            const size = Math.random() * 3 + 1;
+            const size = Math.random() * 2.5 + 1;
             const x = Math.random() * this.canvas.width;
             const y = Math.random() * this.canvas.height;
-            const speedX = (Math.random() - 0.5) * 0.5;
-            const speedY = (Math.random() - 0.5) * 0.5;
+            const speedX = (Math.random() - 0.5) * 0.3;
+            const speedY = (Math.random() - 0.5) * 0.3;
             
             this.particles.push({
                 x,
@@ -238,49 +239,107 @@ class ParticleSystem {
                 speedX,
                 speedY,
                 baseX: x,
-                baseY: y
+                baseY: y,
+                vx: 0,
+                vy: 0
             });
         }
     }
 
     handleMouseMove(e) {
         const rect = this.canvas.getBoundingClientRect();
-        this.mouse.x = e.clientX - rect.left;
-        this.mouse.y = e.clientY - rect.top;
+        const newX = e.clientX - rect.left;
+        const newY = e.clientY - rect.top;
+        
+        // Create wave ripple when mouse moves
+        if (this.mouse.x !== null && this.mouse.y !== null) {
+            const dx = newX - this.mouse.x;
+            const dy = newY - this.mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance > 5) { // Only create wave if mouse moved significantly
+                this.waves.push({
+                    x: newX,
+                    y: newY,
+                    radius: 0,
+                    maxRadius: 250,
+                    speed: 3,
+                    strength: 1
+                });
+            }
+        }
+        
+        this.mouse.x = newX;
+        this.mouse.y = newY;
+    }
+
+    updateWaves() {
+        for (let i = this.waves.length - 1; i >= 0; i--) {
+            const wave = this.waves[i];
+            wave.radius += wave.speed;
+            wave.strength = 1 - (wave.radius / wave.maxRadius);
+            
+            if (wave.radius >= wave.maxRadius) {
+                this.waves.splice(i, 1);
+            }
+        }
     }
 
     drawParticles() {
         this.particles.forEach(particle => {
-            // Calculate distance from mouse
-            if (this.mouse.x != null && this.mouse.y != null) {
-                const dx = this.mouse.x - particle.x;
-                const dy = this.mouse.y - particle.y;
+            // Apply wave effects
+            let totalForceX = 0;
+            let totalForceY = 0;
+            
+            this.waves.forEach(wave => {
+                const dx = particle.x - wave.x;
+                const dy = particle.y - wave.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                const maxDistance = this.mouse.radius;
-
-                if (distance < maxDistance) {
-                    // Push particles away from mouse
-                    const force = (maxDistance - distance) / maxDistance;
+                const waveFront = wave.radius;
+                const waveThickness = 30;
+                
+                // Check if particle is near the wave front
+                if (Math.abs(distance - waveFront) < waveThickness) {
                     const angle = Math.atan2(dy, dx);
-                    particle.x -= Math.cos(angle) * force * 5;
-                    particle.y -= Math.sin(angle) * force * 5;
-                } else {
-                    // Return to base position
-                    particle.x += (particle.baseX - particle.x) * 0.05;
-                    particle.y += (particle.baseY - particle.y) * 0.05;
+                    const force = wave.strength * 8 * (1 - Math.abs(distance - waveFront) / waveThickness);
+                    totalForceX += Math.cos(angle) * force;
+                    totalForceY += Math.sin(angle) * force;
                 }
-            } else {
-                // Gentle drift
-                particle.x += particle.speedX;
-                particle.y += particle.speedY;
-
-                // Bounce off edges
-                if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
-                if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
+            });
+            
+            // Apply forces
+            particle.vx += totalForceX;
+            particle.vy += totalForceY;
+            
+            // Apply damping
+            particle.vx *= 0.85;
+            particle.vy *= 0.85;
+            
+            // Update position
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            
+            // Return to base position
+            const returnForce = 0.03;
+            particle.vx += (particle.baseX - particle.x) * returnForce;
+            particle.vy += (particle.baseY - particle.y) * returnForce;
+            
+            // Gentle drift
+            particle.x += particle.speedX;
+            particle.y += particle.speedY;
+            
+            // Bounce off edges
+            if (particle.x < 0 || particle.x > this.canvas.width) {
+                particle.speedX *= -1;
+                particle.x = Math.max(0, Math.min(this.canvas.width, particle.x));
             }
-
+            if (particle.y < 0 || particle.y > this.canvas.height) {
+                particle.speedY *= -1;
+                particle.y = Math.max(0, Math.min(this.canvas.height, particle.y));
+            }
+            
             // Draw particle
-            this.ctx.fillStyle = 'rgba(78, 205, 196, 0.6)';
+            this.ctx.fillStyle = 'rgba(78, 205, 196, 0.7)';
             this.ctx.beginPath();
             this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
             this.ctx.fill();
@@ -294,10 +353,10 @@ class ParticleSystem {
                 const dy = this.particles[i].y - this.particles[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < 120) {
-                    const opacity = 1 - (distance / 120);
-                    this.ctx.strokeStyle = `rgba(78, 205, 196, ${opacity * 0.2})`;
-                    this.ctx.lineWidth = 1;
+                if (distance < 100) {
+                    const opacity = 1 - (distance / 100);
+                    this.ctx.strokeStyle = `rgba(78, 205, 196, ${opacity * 0.15})`;
+                    this.ctx.lineWidth = 0.8;
                     this.ctx.beginPath();
                     this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
                     this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
@@ -318,6 +377,7 @@ class ParticleSystem {
         this.ctx.fillStyle = gradient;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+        this.updateWaves();
         this.connectParticles();
         this.drawParticles();
 
