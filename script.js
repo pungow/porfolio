@@ -241,7 +241,10 @@ class ParticleSystem {
                 baseX: x,
                 baseY: y,
                 vx: 0,
-                vy: 0
+                vy: 0,
+                brightness: Math.random() * 0.5 + 0.5,
+                twinkleSpeed: Math.random() * 0.02 + 0.01,
+                twinklePhase: Math.random() * Math.PI * 2
             });
         }
     }
@@ -338,8 +341,13 @@ class ParticleSystem {
                 particle.y = Math.max(0, Math.min(this.canvas.height, particle.y));
             }
             
-            // Draw particle
-            this.ctx.fillStyle = 'rgba(78, 205, 196, 0.7)';
+            // Update twinkling
+            particle.twinklePhase += particle.twinkleSpeed;
+            particle.brightness = 0.3 + Math.sin(particle.twinklePhase) * 0.4 + 0.3;
+            
+            // Draw particle with twinkling effect
+            const alpha = particle.brightness;
+            this.ctx.fillStyle = `rgba(78, 205, 196, ${alpha})`;
             this.ctx.beginPath();
             this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
             this.ctx.fill();
