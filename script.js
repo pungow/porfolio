@@ -84,16 +84,16 @@ if (typingText) {
         const currentText = texts[textIndex];
         
         if (isDeleting) {
-            typingText.textContent = currentText.substring(0, charIndex - 1);
+            typingText.textContent = currentText.substring(0, charIndex);
             charIndex--;
             typingSpeed = 50;
         } else {
-            typingText.textContent = currentText.substring(0, charIndex + 1);
+            typingText.textContent = currentText.substring(0, charIndex);
             charIndex++;
             typingSpeed = 100;
         }
         
-        if (!isDeleting && charIndex === currentText.length) {
+        if (!isDeleting && charIndex > currentText.length) {
             isDeleting = true;
             typingSpeed = 2000; // Pause at end
         } else if (isDeleting && charIndex === 0) {
@@ -177,20 +177,162 @@ if (contactForm) {
     });
 }
 
-// Add parallax effect to hero orbs
-window.addEventListener('mousemove', (e) => {
-    const orbs = document.querySelectorAll('.gradient-orb');
-    const mouseX = e.clientX / window.innerWidth;
-    const mouseY = e.clientY / window.innerHeight;
-    
-    orbs.forEach((orb, index) => {
-        const speed = (index + 1) * 20;
-        const x = (mouseX - 0.5) * speed;
-        const y = (mouseY - 0.5) * speed;
+// Particle System for Hero Background
+class ParticleSystem {
+    constructor() {
+        this.canvas = null;
+        this.ctx = null;
+        this.particles = [];
+        this.mouse = { x: null, y: null, radius: 150 };
+        this.init();
+    }
+
+    init() {
+        // Create canvas
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
+
+        // Remove old background if exists
+        const oldBg = heroSection.querySelector('.hero-background');
+        if (oldBg) oldBg.remove();
+
+        this.canvas = document.createElement('canvas');
+        this.canvas.className = 'particle-canvas';
+        this.canvas.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;';
+        heroSection.insertBefore(this.canvas, heroSection.firstChild);
+
+        this.ctx = this.canvas.getContext('2d');
+        this.resizeCanvas();
+        this.createParticles();
+        this.animate();
+
+        // Event listeners
+        window.addEventListener('resize', () => this.resizeCanvas());
+        window.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+        window.addEventListener('mouseout', () => {
+            this.mouse.x = null;
+            this.mouse.y = null;
+        });
+    }
+
+    resizeCanvas() {
+        this.canvas.width = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight;
+        this.particles = [];
+        this.createParticles();
+    }
+
+    createParticles() {
+        const numberOfParticles = Math.floor((this.canvas.width * this.canvas.height) / 9000);
+        for (let i = 0; i < numberOfParticles; i++) {
+            const size = Math.random() * 3 + 1;
+            const x = Math.random() * this.canvas.width;
+            const y = Math.random() * this.canvas.height;
+            const speedX = (Math.random() - 0.5) * 0.5;
+            const speedY = (Math.random() - 0.5) * 0.5;
+            
+            this.particles.push({
+                x,
+                y,
+                size,
+                speedX,
+                speedY,
+                baseX: x,
+                baseY: y
+            });
+        }
+    }
+
+    handleMouseMove(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        this.mouse.x = e.clientX - rect.left;
+        this.mouse.y = e.clientY - rect.top;
+    }
+
+    drawParticles() {
+        this.particles.forEach(particle => {
+            // Calculate distance from mouse
+            if (this.mouse.x != null && this.mouse.y != null) {
+                const dx = this.mouse.x - particle.x;
+                const dy = this.mouse.y - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const maxDistance = this.mouse.radius;
+
+                if (distance < maxDistance) {
+                    // Push particles away from mouse
+                    const force = (maxDistance - distance) / maxDistance;
+                    const angle = Math.atan2(dy, dx);
+                    particle.x -= Math.cos(angle) * force * 5;
+                    particle.y -= Math.sin(angle) * force * 5;
+                } else {
+                    // Return to base position
+                    particle.x += (particle.baseX - particle.x) * 0.05;
+                    particle.y += (particle.baseY - particle.y) * 0.05;
+                }
+            } else {
+                // Gentle drift
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+
+                // Bounce off edges
+                if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
+                if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
+            }
+
+            // Draw particle
+            this.ctx.fillStyle = 'rgba(78, 205, 196, 0.6)';
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            this.ctx.fill();
+        });
+    }
+
+    connectParticles() {
+        for (let i = 0; i < this.particles.length; i++) {
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const dx = this.particles[i].x - this.particles[j].x;
+                const dy = this.particles[i].y - this.particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 120) {
+                    const opacity = 1 - (distance / 120);
+                    this.ctx.strokeStyle = `rgba(78, 205, 196, ${opacity * 0.2})`;
+                    this.ctx.lineWidth = 1;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                    this.ctx.stroke();
+                }
+            }
+        }
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        orb.style.transform = `translate(${x}px, ${y}px)`;
+        // Draw gradient background
+        const gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height);
+        gradient.addColorStop(0, '#0f172a');
+        gradient.addColorStop(0.5, '#1e293b');
+        gradient.addColorStop(1, '#0f172a');
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.connectParticles();
+        this.drawParticles();
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// Initialize particle system when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        new ParticleSystem();
     });
-});
+} else {
+    new ParticleSystem();
+}
 
 // Add scroll reveal animation
 window.addEventListener('scroll', () => {
