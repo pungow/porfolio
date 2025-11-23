@@ -3,6 +3,8 @@ import { initTypingEffect } from './modules/TypingEffect.js';
 import { initAnimations } from './modules/Animations.js';
 import { initContactForm } from './modules/ContactForm.js';
 import { ParticleSystem } from './modules/ParticleSystem.js';
+import { inject } from 'https://esm.sh/@vercel/analytics';
+inject();
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
@@ -10,6 +12,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initContactForm();
     new ParticleSystem();
-    
-    console.log('Portfolio loaded successfully! 🚀 (Modular Version)');
+
 });
